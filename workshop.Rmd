@@ -3,11 +3,28 @@ title: "Getting Started with Shiny"
 output: html_document
 runtime: shiny
 ---
-*8 minute read*  
 
-This is a very brief introduction to building Shiny Apps in R.  
+### Github for this workshop  
 
-From RStudio:  
+https://github.com/richpauloo/shiny_workshop
+
+
+### Purpose  
+
+* Understand the structure of a shiny app and reactivity  
+* Understand how to deploy Shiny Apps  
+
+
+### Agenda  
+
+* examples  
+* cover the structure of a Shiny App  
+* install shiny and run an example Shiny App  
+* build some additional features into the Shiny App  
+* deploy an Shiny App to shinyapps.io  
+
+
+### A Description from RStudio:  
 
 > Shiny is an R package that makes it easy to build interactive web apps straight from R. You can host standalone apps on a webpage or embed them in R Markdown documents or build dashboards. You can also extend your Shiny apps with CSS themes, htmlwidgets, and JavaScript actions.  
 
@@ -19,6 +36,8 @@ From RStudio:
 3. [Natural Language](richpauloo.shinyapps.io/abstr)  
 4. [ggplots](richpauloo.shinyapps.io/word_cloud_app)  
 5. [Plotly](richpauloo.shinyapps.io/ohi_viz)  
+6. [MySQL](richpauloo.shinyapps.io/temp)
+
 
 ### A Shiny App is made of 2 functions  
 
@@ -28,6 +47,7 @@ From RStudio:
 * **Server** : Takes inputs from the ui and computes outputs to send back to the ui  
     + if you're faimilar writing R code, making a server is not difficult  
 
+
 ### What does a Shiny App look like?  
 
 A contained Shiny App contains a ui and server, and can be either:  
@@ -36,26 +56,13 @@ A contained Shiny App contains a ui and server, and can be either:
 * multiple files (ui.R, server.R)  
     + optional global.R : store data upload, data query, packages, custom functions  
     
+    
 ### Run a Basic Shiny App Example from RStudio  
 ```{r}
 #install.packages("shiny")
 library(shiny)
 
 #runExample("01_hello")
-```
-
-
-### Embed a Shiny App within a Markdown document  
-
-[Help page](https://rmarkdown.rstudio.com/authoring_embedded_shiny.html)  
-
-```{r, echo=FALSE}
-shinyAppDir(
-  appDir = "/Users/richpauloo/Desktop/shiny_workshop/min_ex",
-  options = list(
-    width = "100%", height = 800
-  )
-)
 ```
 
 
@@ -76,11 +83,23 @@ shinyAppDir(
     + then add a checkgroup group for observers to filter faithful by the observer, and plot the result (waiting v eruptions)  
 
 
+### Embed a Shiny App within a Markdown document  
+
+[Help page](https://rmarkdown.rstudio.com/authoring_embedded_shiny.html)  
+
+```{r, echo=FALSE}
+shinyAppDir(
+  appDir = "/Users/richpauloo/Desktop/shiny_workshop/min_ex",
+  options = list(
+    width = "100%", height = 600
+  )
+)
+```
 
 
 ### Hosting Your App  
 
-You've built a Shiny App and it's time to host it. Here a few options:  
+You've built a Shiny App and it's time to host it on the web. Here a few options:  
 
 1. [shinyapps.io](http://www.shinyapps.io/) : Simple & Fast (free plans limited at 1GB memory)  
 2. [Amazon Web Servers](https://towardsdatascience.com/how-to-host-a-r-shiny-app-on-aws-cloud-in-7-simple-steps-5595e7885722) : A little harder to configure (not free)  
