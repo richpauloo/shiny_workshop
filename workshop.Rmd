@@ -4,6 +4,11 @@ output: html_document
 runtime: shiny
 ---
 
+***
+
+richpauloo@ucdavis.edu  
+@RichPauloo  
+
 ### Github for this workshop  
 
 https://github.com/richpauloo/shiny_workshop
@@ -62,7 +67,7 @@ A contained Shiny App contains a ui and server, and can be either:
 #install.packages("shiny")
 library(shiny)
 
-#runExample("01_hello")
+runExample("01_hello")
 ```
 
 
@@ -109,5 +114,5 @@ You've built a Shiny App and it's time to host it on the web. Here a few options
 
 # Additional Resources  
 
-[RStudio videos](http://shiny.rstudio.com/tutorial/)  
+[RStudio videos](http://shiny.rstudio.com/tutorial/)   
 [Shiny cheatsheet](http://shiny.rstudio.com/images/shiny-cheatsheet.pdf)  

@@ -1,4 +1,8 @@
 library(shiny)
+library(DT)
+library(tidyverse)
+
+faithful$observers <- c("Ryan", "Nistara", "Pamela", "Rich")
 
 # Define UI for application that draws a histogram
 ui <- shinyUI(fluidPage(
@@ -13,12 +17,26 @@ ui <- shinyUI(fluidPage(
                    "Number of bins:",
                    min = 1,
                    max = 50,
-                   value = 30)
+                   value = 30),
+       
+       checkboxGroupInput("observers",
+                          "Select your favorite observer",
+                          choices = c("Ryan", "Nistara", "Pamela", "Rich"),
+                          selected = "Nistara"
+                          )
     ),
     
     # Show a plot of the generated distribution
     mainPanel(
-       plotOutput("distPlot")
+      tabsetPanel(
+        tabPanel("histogram",
+                 plotOutput("distPlot")),
+        tabPanel("ggplot",
+                 plotOutput("ggplot")
+                 ),
+        tabPanel("data table",
+                 DT::dataTableOutput("data_table"))
+      )
     )
   )
 ))
@@ -36,6 +54,15 @@ server <- function(input, output) {
     hist(x, breaks = bins, col = 'darkgray', border = 'white')
     
   })
+  
+  output$ggplot <- renderPlot({ 
+    
+    faithful %>% filter(observers %in% input$observers) %>% 
+      ggplot() + geom_point(aes(waiting, eruptions, color = observers))
+    
+    })
+  
+  output$data_table <- renderDataTable({ DT::datatable(faithful) })
   
 }
 
